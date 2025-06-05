@@ -1,18 +1,16 @@
-// models/Trainer.js
-
 class Trainer {
   constructor(name, pokemon) {
-    this.name = name;        
-    this.pokemon = pokemon;   // Primero vamos a que solo tiene un Pokémon
+    this.name = name;
+    this.pokemon = pokemon;
   }
 
   getActivePokemon() {
-    return this.pokemon;
+    return this.pokemon.find(pokemon => !pokemon.isFainted());
   }
 
   hasRemainingPokemon() {
-    return !this.pokemon.isFainted();
+    return this.pokemon.some(pokemon => !pokemon.isFainted());
   }
 }
 
-module.exports = Trainer;
+export { Trainer };

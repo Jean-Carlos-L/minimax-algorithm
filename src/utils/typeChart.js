@@ -19,4 +19,4 @@ const typeChart = {
   Fairy:     { Fighting: 2, Dragon: 2, Dark: 2, Fire: 0.5, Poison: 0.5, Steel: 0.5 }
 };
 
-module.exports = typeChart;
+export default typeChart;
