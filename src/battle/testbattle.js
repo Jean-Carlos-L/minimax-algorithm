@@ -1,6 +1,7 @@
 import { battle } from './engine.js';
 import { Trainer } from '../models/trainer.js'; 
 import { Pokemon } from '../models/pokemon.js'; 
+import readline from 'readline';
 
 
 const flamethrower = { name: "Flamethrower", power: 90, type: "fire" };
@@ -23,7 +24,7 @@ const charizard = new Pokemon({
 
 });
 
-const vineWhip = { name: "Vine Whip", power: 45, type: "grass" };
+const vineWhip = { name: "Vine Whip", power: 70, type: "grass" };
 const tackle = { name: "Tackle", power: 40, type: "normal" };
 
 const venusaur = new Pokemon({
@@ -47,4 +48,16 @@ const venusaur = new Pokemon({
 const ash = new Trainer('Ash', [charizard]);
 const misty = new Trainer('Misty', [venusaur]);
 
-battle(ash, misty);
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+console.log('Select battle mode:');
+console.log('1. User vs Machine');
+console.log('2. Machine vs Machine');
+rl.question('Enter 1 or 2: ', async (input) => {
+  const mode = input === '1' ? 'user-vs-cpu' : 'cpu-vs-cpu';
+  rl.close();
+  await battle(ash, misty, mode);
+});
