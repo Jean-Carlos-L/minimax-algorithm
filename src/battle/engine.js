@@ -43,7 +43,7 @@ function battleTurn(attackerTrainer, defenderTrainer, attack) {
 
 // Esta función controla el ciclo completo de la batalla
 async function battle(trainer1, trainer2, mode = 'cpu-vs-cpu') {
-  console.log(`\n⚔️ Battle begins between ${trainer1.name} and ${trainer2.name}!\n`);
+console.log(`\n⚔️ Battle begins between ${trainer1.name} with pokemon ${trainer1.pokemon[0].name} and ${trainer2.name} with pokemon ${trainer2.pokemon[0].name}!\n`);
 
   while (trainer1.hasRemainingPokemon() && trainer2.hasRemainingPokemon()) {
     const p1 = trainer1.getActivePokemon();

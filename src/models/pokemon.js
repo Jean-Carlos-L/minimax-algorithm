@@ -3,31 +3,21 @@ class Pokemon {
     name,
     type1,
     type2,
-    total,
-    hp,
-    currentHP, // <--- importante
-    attack,
-    defense,
-    spAtk,
-    spDef,
-    speed,
-    generation,
-    legendary,
+    stats,
     attacks
   }) {
     this.name = name;
     this.type1 = type1;
     this.type2 = type2;
-    this.total = total;
-    this.hp = hp;
-    this.currentHP = hp; 
-    this.attack = attack;
-    this.defense = defense;
-    this.spAtk = spAtk;
-    this.spDef = spDef;
-    this.speed = speed;
-    this.generation = generation;
-    this.legendary = legendary;
+    this.total = stats.hp + stats.attack + stats.defense + stats.spAtk + stats.spDef + stats.speed;
+    this.hp = stats.hp;
+    this.currentHP = stats.hp;
+    this.attack = stats.attack;
+    this.defense = stats.defense;
+    this.spAtk = stats.spAtk;
+    this.spDef = stats.spDef;
+    this.speed = stats.speed;
+
     this.attacks = attacks;
   }
 

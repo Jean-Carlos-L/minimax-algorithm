@@ -16,9 +16,21 @@ function clonePlayer(original) {
   const originalPkmn = original.getActivePokemon();
 
   const clonedPokemon = new Pokemon({
-    ...originalPkmn,
-    currentHP: originalPkmn.currentHP
+    name: originalPkmn.name,
+    type1: originalPkmn.type1,
+    type2: originalPkmn.type2,
+    stats: {
+      hp: originalPkmn.hp,
+      attack: originalPkmn.attack,
+      defense: originalPkmn.defense,
+      spAtk: originalPkmn.spAtk,
+      spDef: originalPkmn.spDef,
+      speed: originalPkmn.speed,
+    },
+    attacks: JSON.parse(JSON.stringify(originalPkmn.attacks))
   });
+
+  clonedPokemon.currentHP = originalPkmn.currentHP;
 
   return {
     pokemon: clonedPokemon,
@@ -27,6 +39,7 @@ function clonePlayer(original) {
     },
   };
 }
+
 
 function minimax(player, opponent, depth, alpha, beta, maximizingPlayer) {
   const pkmnPlayer = player.getActivePokemon();
