@@ -42,6 +42,13 @@ function battleTurn(attackerTrainer, defenderTrainer, attack) {
 }
 
 // Esta función controla el ciclo completo de la batalla
+
+/*
+Dividir la funcion en 2. Una para el modo de jugador contra CPU y otra para el modo CPU contra CPU.
+Para el modo jugador contra CPU, se debe elegir un ataque y retornar el ataque elegido.
+Para el modo CPU contra CPU, se debe retornar la lista de ataques elegidos por cada CPU en orden de turno.
+*/
+
 async function battle(trainer1, trainer2, mode = 'cpu-vs-cpu') {
 console.log(`\n⚔️ Battle begins between ${trainer1.name} with pokemon ${trainer1.pokemon[0].name} and ${trainer2.name} with pokemon ${trainer2.pokemon[0].name}!\n`);
 
