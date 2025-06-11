@@ -1,11 +1,6 @@
 import calculateDamage from "./damage.js";
 import { Pokemon } from "../models/pokemon.js";
 
-//esta es la heuristica de evaluación del estado del juego
-// en este caso, simplemente restamos los puntos de vida del jugador y del oponente
-// si el resultado es positivo, significa que el jugador está ganando
-// si es negativo, significa que el oponente está ganando
-// si es cero, significa que están empatados
 function evaluateState(player, opponent) {
   const p1HP = player.getActivePokemon().currentHP;
   const p2HP = opponent.getActivePokemon().currentHP;
@@ -27,7 +22,7 @@ function clonePlayer(original) {
       spDef: originalPkmn.spDef,
       speed: originalPkmn.speed,
     },
-    attacks: JSON.parse(JSON.stringify(originalPkmn.attacks))
+    attacks: JSON.parse(JSON.stringify(originalPkmn.attacks)),
   });
 
   clonedPokemon.currentHP = originalPkmn.currentHP;
@@ -39,7 +34,6 @@ function clonePlayer(original) {
     },
   };
 }
-
 
 function minimax(player, opponent, depth, alpha, beta, maximizingPlayer) {
   const pkmnPlayer = player.getActivePokemon();

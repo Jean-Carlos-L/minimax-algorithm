@@ -1,6 +1,6 @@
-import calculateDamage from './damage.js';
-import { chooseBestMove } from './minimax.js';
-import readline from 'readline';
+import calculateDamage from "./damage.js";
+import { chooseBestMove } from "./minimax.js";
+import readline from "readline";
 
 // Esta función permite que el usuario elija manualmente un ataque
 function chooseManualMove(pokemon) {
@@ -15,71 +15,114 @@ function chooseManualMove(pokemon) {
       output: process.stdout,
     });
 
-    rl.question('Choose a move by number: ', (input) => {
+    rl.question("Choose a move by number: ", (input) => {
       const choice = parseInt(input);
       rl.close();
 
       if (!isNaN(choice) && choice >= 1 && choice <= pokemon.attacks.length) {
         resolve(pokemon.attacks[choice - 1]);
       } else {
-        console.log('❌ Invalid choice. Please select a valid number.');
+        console.log("❌ Invalid choice. Please select a valid number.");
         resolve(chooseManualMove(pokemon)); // Reintenta si la elección es inválida
       }
     });
   });
 }
 
-// Esta función ejecuta un turno de batalla entre dos entrenadores
 function battleTurn(attackerTrainer, defenderTrainer, attack) {
   const attacker = attackerTrainer.getActivePokemon();
   const defender = defenderTrainer.getActivePokemon();
 
   const damage = calculateDamage(attacker, defender, attack);
   defender.receiveDamage(damage);
-
-  console.log(`${attacker.name} used ${attack.name} and dealt ${damage} damage to ${defender.name}`);
-  console.log(`${defender.name}'s remaining HP: ${defender.currentHP}\n`);
+  return damage;
 }
 
-// Esta función controla el ciclo completo de la batalla
+function cpuVsCpuBattle(cpu1, cpu2) {
+  console.log(`\n🤖 CPU Battle between ${cpu1.name} and ${cpu2.name}!\n`);
 
-/*
-Dividir la funcion en 2. Una para el modo de jugador contra CPU y otra para el modo CPU contra CPU.
-Para el modo jugador contra CPU, se debe elegir un ataque y retornar el ataque elegido.
-Para el modo CPU contra CPU, se debe retornar la lista de ataques elegidos por cada CPU en orden de turno.
-*/
+  const movesLog = [];
 
-async function battle(trainer1, trainer2, mode = 'cpu-vs-cpu') {
-console.log(`\n⚔️ Battle begins between ${trainer1.name} with pokemon ${trainer1.pokemon[0].name} and ${trainer2.name} with pokemon ${trainer2.pokemon[0].name}!\n`);
+  while (cpu1.hasRemainingPokemon() && cpu2.hasRemainingPokemon()) {
+    const p1 = cpu1.getActivePokemon();
+    const p2 = cpu2.getActivePokemon();
 
-  while (trainer1.hasRemainingPokemon() && trainer2.hasRemainingPokemon()) {
-    const p1 = trainer1.getActivePokemon();
-    const p2 = trainer2.getActivePokemon();
-
-    const move1 = (mode === 'user-vs-cpu') ? await chooseManualMove(p1) : chooseBestMove(trainer1, trainer2);
-    const move2 = chooseBestMove(trainer2, trainer1);
+    const move1 = chooseBestMove(cpu1, cpu2);
+    const move2 = chooseBestMove(cpu2, cpu1);
 
     let first, second;
     if (p1.speed >= p2.speed) {
-      first = { trainer: trainer1, attack: move1 };
-      second = { trainer: trainer2, attack: move2 };
+      first = { trainer: cpu1, attack: move1 };
+      second = { trainer: cpu2, attack: move2 };
     } else {
-      first = { trainer: trainer2, attack: move2 };
-      second = { trainer: trainer1, attack: move1 };
+      first = { trainer: cpu2, attack: move2 };
+      second = { trainer: cpu1, attack: move1 };
     }
 
-    battleTurn(first.trainer, second.trainer, first.attack);
+    const damage1 = battleTurn(first.trainer, second.trainer, first.attack);
+    movesLog.push(
+      `${first.trainer.name} used ${first.attack.name} (Damage: ${damage1})`
+    );
 
+    let damage2 = 0;
     if (second.trainer.hasRemainingPokemon()) {
-      battleTurn(second.trainer, first.trainer, second.attack);
+      damage2 = battleTurn(second.trainer, first.trainer, second.attack);
+      movesLog.push(
+        `${second.trainer.name} used ${second.attack.name} (Damage: ${damage2})`
+      );
     }
+
+    movesLog.push(
+      `🔸 Round Summary: ${first.trainer.name} did ${damage1}, ${second.trainer.name} did ${damage2}`
+    );
   }
 
-  if (trainer1.hasRemainingPokemon()) {
-    console.log(`🎉 ${trainer1.name} wins the battle!\n`);
+  const winner = cpu1.hasRemainingPokemon() ? cpu1.name : cpu2.name;
+  movesLog.push(`🏆 ${winner} wins!`);
+
+  return {
+    winner,
+    movesLog,
+  };
+}
+async function userVsCpuTurn(user, cpu) {
+  const userPkmn = user.getActivePokemon();
+  const cpuPkmn = cpu.getActivePokemon();
+
+  const userMove = await chooseManualMove(userPkmn);
+  const cpuMove = chooseBestMove(cpu, user);
+
+  let first, second;
+  if (userPkmn.speed >= cpuPkmn.speed) {
+    first = { trainer: user, attack: userMove };
+    second = { trainer: cpu, attack: cpuMove };
   } else {
-    console.log(`🎉 ${trainer2.name} wins the battle!\n`);
+    first = { trainer: cpu, attack: cpuMove };
+    second = { trainer: user, attack: userMove };
   }
+
+  const damage1 = battleTurn(first.trainer, second.trainer, first.attack);
+
+  let damage2 = 0;
+  if (second.trainer.hasRemainingPokemon()) {
+    damage2 = battleTurn(second.trainer, first.trainer, second.attack);
+  }
+
+  let winner = null;
+  if (!user.hasRemainingPokemon()) winner = cpu.name;
+  if (!cpu.hasRemainingPokemon()) winner = user.name;
+
+  return {
+    userAttack: userMove.name,
+    cpuAttack: cpuMove.name,
+    userPokemon: userPkmn.name,
+    cpuPokemon: cpuPkmn.name,
+    userHP: userPkmn.currentHP,
+    cpuHP: cpuPkmn.currentHP,
+    userDamage: first.trainer === user ? damage1 : damage2,
+    cpuDamage: first.trainer === cpu ? damage1 : damage2,
+    winner,
+  };
 }
 
-export { battleTurn, battle };
+export { battleTurn, userVsCpuTurn, cpuVsCpuBattle };
