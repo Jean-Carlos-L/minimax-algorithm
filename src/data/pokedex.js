@@ -5,7 +5,7 @@ export const pokedex = [
     type1: "Grass",
     type2: "Poison",
     stats: {
-      hp: 45,
+      hp: 345,
       attack: 49,
       defense: 49,
       spAtk: 65,
@@ -43,7 +43,7 @@ export const pokedex = [
     type1: "Fire",
     type2: null,
     stats: {
-      hp: 39,
+      hp: 339,
       attack: 52,
       defense: 43,
       spAtk: 60,
@@ -81,7 +81,7 @@ export const pokedex = [
     type1: "Water",
     type2: null,
     stats: {
-      hp: 44,
+      hp: 344,
       attack: 48,
       defense: 65,
       spAtk: 50,
@@ -119,7 +119,7 @@ export const pokedex = [
     type1: "Electric",
     type2: null,
     stats: {
-      hp: 35,
+      hp: 335,
       attack: 55,
       defense: 40,
       spAtk: 50,
@@ -157,7 +157,7 @@ export const pokedex = [
     type1: "Normal",
     type2: null,
     stats: {
-      hp: 55,
+      hp: 355,
       attack: 55,
       defense: 50,
       spAtk: 45,
@@ -195,7 +195,7 @@ export const pokedex = [
     type1: "Dragon",
     type2: null,
     stats: {
-      hp: 41,
+      hp: 341,
       attack: 64,
       defense: 45,
       spAtk: 50,
@@ -233,7 +233,7 @@ export const pokedex = [
     type1: "Psychic",
     type2: null,
     stats: {
-      hp: 106,
+      hp: 406,
       attack: 110,
       defense: 90,
       spAtk: 154,
@@ -271,7 +271,7 @@ export const pokedex = [
     type1: "Bug",
     type2: "Steel",
     stats: {
-      hp: 70,
+      hp: 370,
       attack: 130,
       defense: 100,
       spAtk: 55,
@@ -309,7 +309,7 @@ export const pokedex = [
     type1: "Water",
     type2: null,
     stats: {
-      hp: 100,
+      hp: 400,
       attack: 75,
       defense: 115,
       spAtk: 90,
@@ -347,7 +347,7 @@ export const pokedex = [
     type1: "Fire",
     type2: "Fighting",
     stats: {
-      hp: 80,
+      hp: 380,
       attack: 120,
       defense: 70,
       spAtk: 110,
@@ -385,7 +385,7 @@ export const pokedex = [
     type1: "Grass",
     type2: "Poison",
     stats: {
-      hp: 77,
+      hp: 377,
       attack: 80,
       defense: 57,
       spAtk: 100,
@@ -423,7 +423,7 @@ export const pokedex = [
     type1: "Fire",
     type2: null,
     stats: {
-      hp: 47,
+      hp: 347,
       attack: 104,
       defense: 83,
       spAtk: 83,
@@ -461,7 +461,7 @@ export const pokedex = [
     type1: "Water",
     type2: null,
     stats: {
-      hp: 47,
+      hp: 347,
       attack: 66,
       defense: 59,
       spAtk: 101,
@@ -499,7 +499,7 @@ export const pokedex = [
     type1: "Bug",
     type2: "Flying",
     stats: {
-      hp: 115,
+      hp: 415,
       attack: 53,
       defense: 127,
       spAtk: 120,
@@ -537,7 +537,7 @@ export const pokedex = [
     type1: "Bug",
     type2: "Poison",
     stats: {
-      hp: 98,
+      hp: 398,
       attack: 93,
       defense: 47,
       spAtk: 71,
@@ -575,7 +575,7 @@ export const pokedex = [
     type1: "Normal",
     type2: "Flying",
     stats: {
-      hp: 128,
+      hp: 428,
       attack: 62,
       defense: 119,
       spAtk: 54,
@@ -613,7 +613,7 @@ export const pokedex = [
     type1: "Normal",
     type2: null,
     stats: {
-      hp: 129,
+      hp: 429,
       attack: 117,
       defense: 53,
       spAtk: 64,
@@ -651,7 +651,7 @@ export const pokedex = [
     type1: "Normal",
     type2: "Flying",
     stats: {
-      hp: 107,
+      hp: 407,
       attack: 83,
       defense: 113,
       spAtk: 114,
@@ -689,7 +689,7 @@ export const pokedex = [
     type1: "Poison",
     type2: null,
     stats: {
-      hp: 106,
+      hp: 406,
       attack: 76,
       defense: 73,
       spAtk: 61,
@@ -727,7 +727,7 @@ export const pokedex = [
     type1: "Electric",
     type2: null,
     stats: {
-      hp: 103,
+      hp: 403,
       attack: 45,
       defense: 68,
       spAtk: 107,
@@ -765,7 +765,7 @@ export const pokedex = [
     type1: "Ground",
     type2: null,
     stats: {
-      hp: 42,
+      hp: 342,
       attack: 58,
       defense: 107,
       spAtk: 92,
@@ -803,7 +803,7 @@ export const pokedex = [
     type1: "Poison",
     type2: "Ground",
     stats: {
-      hp: 91,
+      hp: 391,
       attack: 70,
       defense: 102,
       spAtk: 59,
@@ -841,7 +841,7 @@ export const pokedex = [
     type1: "Poison",
     type2: "Ground",
     stats: {
-      hp: 45,
+      hp: 345,
       attack: 96,
       defense: 127,
       spAtk: 53,
@@ -879,7 +879,7 @@ export const pokedex = [
     type1: "Fairy",
     type2: null,
     stats: {
-      hp: 66,
+      hp: 366,
       attack: 49,
       defense: 124,
       spAtk: 114,
@@ -917,7 +917,7 @@ export const pokedex = [
     type1: "Fire",
     type2: null,
     stats: {
-      hp: 55,
+      hp: 355,
       attack: 108,
       defense: 114,
       spAtk: 90,
@@ -955,7 +955,7 @@ export const pokedex = [
     type1: "Normal",
     type2: "Fairy",
     stats: {
-      hp: 57,
+      hp: 357,
       attack: 125,
       defense: 71,
       spAtk: 56,
@@ -993,7 +993,7 @@ export const pokedex = [
     type1: "Poison",
     type2: "Flying",
     stats: {
-      hp: 116,
+      hp: 416,
       attack: 47,
       defense: 96,
       spAtk: 59,
@@ -1031,7 +1031,7 @@ export const pokedex = [
     type1: "Grass",
     type2: "Poison",
     stats: {
-      hp: 76,
+      hp: 376,
       attack: 65,
       defense: 105,
       spAtk: 61,
@@ -1069,7 +1069,7 @@ export const pokedex = [
     type1: "Bug",
     type2: "Grass",
     stats: {
-      hp: 41,
+      hp: 341,
       attack: 48,
       defense: 67,
       spAtk: 128,
@@ -1107,7 +1107,7 @@ export const pokedex = [
     type1: "Bug",
     type2: "Poison",
     stats: {
-      hp: 127,
+      hp: 427,
       attack: 72,
       defense: 49,
       spAtk: 83,
@@ -1145,7 +1145,7 @@ export const pokedex = [
     type1: "Ground",
     type2: null,
     stats: {
-      hp: 93,
+      hp: 393,
       attack: 93,
       defense: 48,
       spAtk: 61,
@@ -1183,7 +1183,7 @@ export const pokedex = [
     type1: "Normal",
     type2: null,
     stats: {
-      hp: 59,
+      hp: 359,
       attack: 101,
       defense: 79,
       spAtk: 108,
@@ -1221,7 +1221,7 @@ export const pokedex = [
     type1: "Water",
     type2: null,
     stats: {
-      hp: 70,
+      hp: 370,
       attack: 76,
       defense: 120,
       spAtk: 42,
@@ -1259,7 +1259,7 @@ export const pokedex = [
     type1: "Fighting",
     type2: null,
     stats: {
-      hp: 82,
+      hp: 382,
       attack: 102,
       defense: 93,
       spAtk: 83,
@@ -1297,7 +1297,7 @@ export const pokedex = [
     type1: "Fire",
     type2: null,
     stats: {
-      hp: 76,
+      hp: 376,
       attack: 80,
       defense: 125,
       spAtk: 78,
@@ -1335,7 +1335,7 @@ export const pokedex = [
     type1: "Water",
     type2: "Fighting",
     stats: {
-      hp: 115,
+      hp: 415,
       attack: 118,
       defense: 112,
       spAtk: 106,
@@ -1373,7 +1373,7 @@ export const pokedex = [
     type1: "Fighting",
     type2: null,
     stats: {
-      hp: 84,
+      hp: 384,
       attack: 75,
       defense: 92,
       spAtk: 48,
@@ -1411,7 +1411,7 @@ export const pokedex = [
     type1: "Grass",
     type2: "Poison",
     stats: {
-      hp: 85,
+      hp: 385,
       attack: 47,
       defense: 101,
       spAtk: 99,
@@ -1449,7 +1449,7 @@ export const pokedex = [
     type1: "Water",
     type2: "Poison",
     stats: {
-      hp: 47,
+      hp: 347,
       attack: 48,
       defense: 56,
       spAtk: 62,
@@ -1487,7 +1487,7 @@ export const pokedex = [
     type1: "Rock",
     type2: "Ground",
     stats: {
-      hp: 64,
+      hp: 364,
       attack: 127,
       defense: 43,
       spAtk: 114,
