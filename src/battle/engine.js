@@ -1,5 +1,5 @@
 import calculateDamage from "./damage.js";
-import { chooseBestMove } from "./minimax.js";
+import { chooseBestMove, getStrongestAttack } from "./minimax.js";
 
 function battleTurn(attackerTrainer, defenderTrainer, attack) {
   if (!attack || typeof attack !== "object") {
@@ -11,7 +11,15 @@ function battleTurn(attackerTrainer, defenderTrainer, attack) {
 
   const damage = calculateDamage(attacker, defender, attack);
   defender.receiveDamage(damage);
-  return damage;
+
+
+  let penalty = 0;
+  const strongestAttack = getStrongestAttack(attacker, defender);
+  if (attack.name === strongestAttack.name) {
+    penalty = Math.floor(attacker.hp * 0.1);
+    attacker.receiveDamage(penalty);
+  }
+  return {damage, penalty};
 }
 
 function cpuVsCpuBattle(cpu1, cpu2) {
@@ -40,7 +48,8 @@ function cpuVsCpuBattle(cpu1, cpu2) {
     movesLog.push({
       pokemon: first.trainer.getActivePokemon().name,
       move: first.attack.name,
-      damage: damage1,
+      damage: damage1.damage,
+      penalty: damage1.penalty,
     });
 
     let damage2 = 0;
@@ -50,6 +59,7 @@ function cpuVsCpuBattle(cpu1, cpu2) {
         pokemon: second.trainer.getActivePokemon().name,
         move: second.attack.name,
         damage: damage2,
+        penalty: damage2.penalty,
       });
     }
   }
@@ -89,8 +99,10 @@ function userVsCpuTurn(user, cpu, optionAttack) {
     cpuPokemon: cpuPkmn.name,
     userHP: userPkmn.currentHP,
     cpuHP: cpuPkmn.currentHP,
-    userDamage: first.trainer === user ? damage1 : damage2,
-    cpuDamage: first.trainer === cpu ? damage1 : damage2,
+    userPenalty: damage1.penalty,
+    cpuPenalty: damage2.penalty,
+    userDamage: first.trainer === user ? damage1.damage : damage2.damage,
+    cpuDamage: first.trainer === cpu ? damage1.damage : damage2.damage,
     winner,
   };
 }

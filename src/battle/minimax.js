@@ -124,4 +124,19 @@ function chooseBestMove(player, opponent, depth = 2) {
   return bestMove;
 }
 
-export { chooseBestMove };
+function getStrongestAttack(attacker, defender) {
+  let bestAttack = attacker.attacks[0];
+  let maxDamage = calculateDamage(attacker, defender, bestAttack);
+
+  for (const attack of attacker.attacks) {
+    const dmg = calculateDamage(attacker, defender, attack);
+    if (dmg > maxDamage) {
+      maxDamage = dmg;
+      bestAttack = attack;
+    }
+  }
+
+  return bestAttack;
+}
+
+export { chooseBestMove, getStrongestAttack };
