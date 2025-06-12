@@ -117,7 +117,7 @@ function minimax(player, opponent, depth, alpha, beta, maximizingPlayer) {
  * @param {number} [depth=2] - Profundidad de búsqueda
  * @returns {Object|null} El mejor ataque según minimax, o null si no hay ataques
  */
-function chooseBestMove(player, opponent, depth = 2) {
+function chooseBestMove(player, opponent, depth = 10) {
   const activePokemon = player.getActivePokemon();
 
   if (!activePokemon.attacks || activePokemon.attacks.length === 0) {
