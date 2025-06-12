@@ -7,6 +7,7 @@ import PokemonPreview from "../components/PokemonPreview";
 function ListPokemons() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+  const [searchPokemon, setSearchPokemon] = useState("");
   const [pokemonPlayer1, setPokemonPlayer1] = useState(null);
   const [pokemonPlayer2, setPokemonPlayer2] = useState(null);
 
@@ -46,6 +47,14 @@ function ListPokemons() {
 
   const mode = searchParams.get("mode");
 
+  const filteredPokedex = (pokedex) => {
+    if (!searchPokemon) return pokedex;
+
+    return pokedex.filter((pokemon) =>
+      pokemon.name.toLowerCase().includes(searchPokemon.toLowerCase())
+    );
+  };
+
   return (
     <main className="flex items-start justify-center gap-6 min-h-screen bg-gray-100 px-4 py-10">
       <div className="w-1/5 sticky top-10 self-start">
@@ -57,10 +66,25 @@ function ListPokemons() {
         )}
       </div>
 
-      <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {pokedex.map((pokemon) => (
-          <PokemonCard key={pokemon.id} pokemon={pokemon} onClick={handleSelect} />
-        ))}
+      <div className="flex-1 ">
+        <div>
+          <input
+            type="text"
+            placeholder="Buscar Pokémon..."
+            className="mb-4 p-2 border rounded w-full"
+            onChange={(e) => setSearchPokemon(e.target.value)}
+            value={searchPokemon}
+          />
+        </div>
+        <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredPokedex(pokedex).map((pokemon) => (
+            <PokemonCard
+              key={pokemon.id}
+              pokemon={pokemon}
+              onClick={handleSelect}
+            />
+          ))}
+        </div>
       </div>
 
       <div className="w-1/5 sticky top-10 self-start">

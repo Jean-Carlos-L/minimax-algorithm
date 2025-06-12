@@ -1,4 +1,4 @@
-import {Router, Route, Routes} from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import ListPokemons from "./views/ListPokemons";
 import LandingPage from "./views/LandingPage";
 import BattlePage from "./views/BattlePage";

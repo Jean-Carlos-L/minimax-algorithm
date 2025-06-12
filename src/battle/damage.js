@@ -20,7 +20,7 @@ function calculateDamage(attacker, defender, attack) {
   const defStat = defender.spDef > defender.defense ? defender.spDef : defender.defense;
 
   const effectiveness = getTypeEffectiveness(attack.type, defender.type1, defender.type2);
-  const baseDamage = ((2 * 50 / 5 + 2) * attack.power * (atkStat / defStat)) / 50 + 2;
+  const baseDamage = ((2 * 10 / 5 + 2) * attack.power * (atkStat / defStat)) / 10 + 2;
 
   return Math.floor(baseDamage * effectiveness);
 }

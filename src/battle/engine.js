@@ -14,7 +14,6 @@ function battleTurn(attackerTrainer, defenderTrainer, attack) {
   return damage;
 }
 
-
 function cpuVsCpuBattle(cpu1, cpu2) {
   console.log(`\n🤖 CPU Battle between ${cpu1.name} and ${cpu2.name}!\n`);
 
@@ -38,7 +37,7 @@ function cpuVsCpuBattle(cpu1, cpu2) {
 
     const damage1 = battleTurn(first.trainer, second.trainer, first.attack);
 
-     movesLog.push({
+    movesLog.push({
       pokemon: first.trainer.getActivePokemon().name,
       move: first.attack.name,
       damage: damage1,
@@ -61,22 +60,16 @@ function cpuVsCpuBattle(cpu1, cpu2) {
     movesLog,
   };
 }
-async function userVsCpuTurn(user, cpu, optionAttack ) {
+
+function userVsCpuTurn(user, cpu, optionAttack) {
   const userPkmn = user.getActivePokemon();
   const cpuPkmn = cpu.getActivePokemon();
 
   const userMove = optionAttack;
   const cpuMove = chooseBestMove(cpu, user);
 
-
-  let first, second;
-  if (userPkmn.speed >= cpuPkmn.speed) {
-    first = { trainer: user, attack: userMove };
-    second = { trainer: cpu, attack: cpuMove };
-  } else {
-    first = { trainer: cpu, attack: cpuMove };
-    second = { trainer: user, attack: userMove };
-  }
+  let first = { trainer: user, attack: userMove };
+  let second = { trainer: cpu, attack: cpuMove };
 
   const damage1 = battleTurn(first.trainer, second.trainer, first.attack);
 
