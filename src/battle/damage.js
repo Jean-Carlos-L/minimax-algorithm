@@ -1,5 +1,5 @@
 import typeChart from "../utils/typeChart.js";
-
+ 
 function getTypeEffectiveness(attackType, defenderType1, defenderType2 = null) {
   let multiplier = 1;
 

@@ -1,6 +1,12 @@
 import calculateDamage from "./damage.js";
 import { chooseBestMove, getStrongestAttack } from "./minimax.js";
 
+/**
+ * @param {object} attackerTrainer - Entrenador que ataca en este turno
+ * @param {object} defenderTrainer - Entrenador que recibe el ataque
+ * @param {object} attack - Movimiento que será utilizado
+ * @returns {object} - Daño causado y penalización aplicada (si hay)
+ */
 function battleTurn(attackerTrainer, defenderTrainer, attack) {
   if (!attack || typeof attack !== "object") {
     throw new Error(`Invalid attack used by ${attackerTrainer.name}`);
@@ -22,8 +28,12 @@ function battleTurn(attackerTrainer, defenderTrainer, attack) {
   return {damage, penalty};
 }
 
+/**
+ * @param {object} cpu1 - Primer entrenador CPU
+ * @param {object} cpu2 - Segundo entrenador CPU
+ * @returns {object} - Nombre del ganador y registro de movimientos
+ */
 function cpuVsCpuBattle(cpu1, cpu2) {
-  console.log(`\n🤖 CPU Battle between ${cpu1.name} and ${cpu2.name}!\n`);
 
   const movesLog = [];
 
@@ -70,7 +80,15 @@ function cpuVsCpuBattle(cpu1, cpu2) {
     movesLog,
   };
 }
-
+/**
+ * Ejecuta un turno de batalla entre el usuario y la CPU.
+ * Se determina el orden de los ataques por velocidad y se aplica el daño correspondiente.
+ *
+ * @param {object} user - Entrenador jugador humano
+ * @param {object} cpu - Entrenador controlado por la CPU
+ * @param {object} optionAttack - Movimiento elegido por el jugador
+ * @returns {object} - Detalles del turno, incluyendo ataques, daños y ganador (si hay)
+ */
 function userVsCpuTurn(user, cpu, optionAttack) {
   const userPkmn = user.getActivePokemon();
   const cpuPkmn = cpu.getActivePokemon();
