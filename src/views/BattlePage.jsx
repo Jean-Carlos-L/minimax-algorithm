@@ -11,17 +11,17 @@ function BattlePage() {
   const [currentMove, setCurrentMove] = useState(null);
   const [canUserAttack, setCanUserAttack] = useState(true);
 
-  const [pokemonPlayer1, setPokemonPlayer1] = useState(
+  const [pokemonPlayer1] = useState(
     JSON.parse(localStorage.getItem("pokemonPlayer1"))
   );
-  const [pokemonPlayer2, setPokemonPlayer2] = useState(
+  const [pokemonPlayer2] = useState(
     JSON.parse(localStorage.getItem("pokemonPlayer2"))
   );
 
-  const [trainer1, setTrainer1] = useState(
+  const [trainer1] = useState(
     new Trainer(pokemonPlayer1.name, [new Pokemon(pokemonPlayer1)])
   );
-  const [trainer2, setTrainer2] = useState(
+  const [trainer2] = useState(
     new Trainer(pokemonPlayer2.name, [new Pokemon(pokemonPlayer2)])
   );
 
@@ -30,15 +30,17 @@ function BattlePage() {
 
   const startBattle = async (battleLog) => {
     for (let i = 0; i < battleLog.length; i++) {
-      const { pokemon: name, damage, move } = battleLog[i];
+      const { pokemon: name, damage, move, penalty } = battleLog[i];
 
       await new Promise((resolve) => {
         setTimeout(() => {
           setCurrentMove(`${name} used ${move} and dealt ${damage} damage!`);
           if (name === pokemonPlayer1.name) {
             setHp2((prevHp) => Math.max(prevHp - damage, 0));
+            setHp1((prevHp) => Math.max(prevHp - penalty, 0));
           } else if (name === pokemonPlayer2.name) {
             setHp1((prevHp) => Math.max(prevHp - damage, 0));
+            setHp2((prevHp) => Math.max(prevHp - penalty, 0));
           }
           resolve();
         }, 3000);
@@ -51,13 +53,18 @@ function BattlePage() {
     if (!canUserAttack) return;
     setCanUserAttack(false);
     const damage = userVsCpuTurn(trainer1, trainer2, attack);
-    setHp2((prevHp) => Math.max(prevHp - damage.userDamage, 0));
+
+    setHp2((prevHp) =>
+      Math.max(prevHp - damage.userDamage, 0)
+    );
+    setHp1((prevHp) => Math.max(prevHp - damage.userPenalty, 0));
     setCurrentMove(
       `${damage.userPokemon} used ${damage.userAttack} and dealt ${damage.userDamage} damage!`
     );
 
     setTimeout(() => {
       setHp1((prevHp) => Math.max(prevHp - damage.cpuDamage, 0));
+      setHp2((prevHp) => Math.max(prevHp - damage.cpuPenalty, 0));
       setCurrentMove(
         () =>
           `${damage.cpuPokemon} used ${damage.cpuAttack} and dealt ${damage.cpuDamage} damage!`
@@ -73,7 +80,6 @@ function BattlePage() {
     if (mode === "cpu") {
       const battle = () => {
         const result = cpuVsCpuBattle(trainer1, trainer2);
-        console.log("Battle Result:", result);
         startBattle(result.movesLog);
       };
 
