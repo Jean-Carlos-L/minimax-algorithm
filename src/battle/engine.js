@@ -58,7 +58,7 @@ function cpuVsCpuBattle(cpu1, cpu2) {
       movesLog.push({
         pokemon: second.trainer.getActivePokemon().name,
         move: second.attack.name,
-        damage: damage2,
+        damage: damage2.damage,
         penalty: damage2.penalty,
       });
     }
