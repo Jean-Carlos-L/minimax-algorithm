@@ -98,7 +98,6 @@ Ubicada en `battle/minimax.js`, la IA toma decisiones estratégicas mediante:
 El proyecto puede ejecutarse directamente desde un entorno de desarrollo Node.js. Para lanzar la simulación de batalla entre jugador humano e IA, se corre el archivo principal ubicado en `main.js`.
 
 Se puede ejecutar el proyecto con el comando npm run dev
----
 
 ## Pruebas
 
